@@ -51,7 +51,7 @@
     <ClCompile Include="LomutoPartition_quickSort.cpp">
       <Filter>Source Files\Sort</Filter>
     </ClCompile>
-    <ClCompile Include="test3.cpp">
+    <ClCompile Include="heap-based-priority -queue_words.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
