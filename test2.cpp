@@ -8,5 +8,7 @@
 using namespace std;
 
 int main() {
-	cout << sizeof(int) << endl;
+	int b = 2;
+	unsigned int a = 1 << b;
+	//printf("%bs")
 }
