@@ -5,7 +5,7 @@
 #include <time.h> //clock()
 #include <Windows.h> //time(0), Sleep()
 #include <string>
-#include <math.h>
+#include <math.h> //log2()
 
 using namespace std;
 
@@ -40,6 +40,7 @@ class minHeapPriorityQueue {
 			i = smallest;
 		}
 	}
+
 	/*void build_min_heap() {
 		for (int i = heapSize / 2; i >= 1; i--)
 			min_heapify(i);
