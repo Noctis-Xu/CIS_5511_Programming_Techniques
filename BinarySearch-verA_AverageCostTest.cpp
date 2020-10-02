@@ -3,8 +3,8 @@
 #include <iomanip>
 #include <stdio.h>
 #include <stdlib.h> //rand()
-#include <time.h> //clock()
-#include <Windows.h> //time(0), Sleep()
+#include <time.h> //clock(), time(0)
+#include <Windows.h> //Sleep()
 
 
 using namespace std;

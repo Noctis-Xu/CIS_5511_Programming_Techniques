@@ -28,7 +28,7 @@ void printArray(int* A, int len) {
 }
 
 int hoarePartition(int* A, int p, int r) {
-	int x = A[p]; //notice what element to compare
+	int x = A[p]; //notice which one to be compared
 	int i = p - 1;
 	int j = r + 1;
 	int counter = 0;

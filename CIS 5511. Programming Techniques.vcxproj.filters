@@ -54,5 +54,8 @@
     <ClCompile Include="minHeap-based-priority-queue_words.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Compare_Hoare_Lomuto_Partition.cpp">
+      <Filter>Source Files\Sort</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
