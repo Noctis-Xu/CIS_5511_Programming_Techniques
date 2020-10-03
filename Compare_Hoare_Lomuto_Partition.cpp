@@ -2,7 +2,6 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-//#include <Windows.h>
 #include <time.h> //clock()
 
 using namespace std;
@@ -25,19 +24,16 @@ void printArray(int* A, int begin, int end) { //print A[begin..end]
 	}cout << endl;
 }
 
-int hoarePartition(int* A, int p, int r) { //times:  j+i: n, comparison: n, swap: between[0,n]. Note that while(true) doesn't take comparison
+int hoarePartition(int* A, int p, int r) { //times:  j+i: n, comparison: n + swap times, swap: between[0,n]. Note that while(true) doesn't take comparison
 	int x = A[r]; //notice which one to be compared
 	int i = p - 1;
 	int j = r + 1;
 	counterH = 0;
 	while (true) {
-		//counterH++;
 		do {
-			//counterH++;
 			j--;
 		} while (A[j] > x);
 		do {
-			//counterH++;
 			i++;
 		} while (A[i] < x);
 		if (i < j) {
@@ -53,7 +49,6 @@ int lomutoPartition(int* A, int p, int r) { //times:  j: n, comparison: 2n, i: n
 	int i = p - 1;
 	counterL = 0;
 	for (int j = p; j < r; j++) {
-		//counterL++;
 		if (A[j] <= x) {
 			counterL++;
 			i++;
@@ -61,6 +56,7 @@ int lomutoPartition(int* A, int p, int r) { //times:  j: n, comparison: 2n, i: n
 		}
 	}
 	swap(A[i + 1], A[r]);
+	counterL++;
 	return i + 1;
 }
 
@@ -80,7 +76,7 @@ void copyArray(int* A, int* B, const int len) {//copy A to B
 
 void compare() {
 	int cases = 1000;
-	for (int n = 64; n < 100000; n = n * 2) {
+	for (int n = 16; n < 100000; n = n * 2) {
 		int len = n;
 		long long int counterSumH = 0; //the sum of all counters for hoarePartition
 		long long int counterSumL = 0; //the sum of all counters for lomutoPartition
@@ -110,8 +106,8 @@ void compare() {
 		cout << "length=" << len << endl;
 		counterAvgH = (counterSumH + 0.0) / cases;
 		counterAvgL = (counterSumL + 0.0) / cases;
-		cout << "counterAvgH=" << counterAvgH << endl;
-		cout << "counterAvgL=" << counterAvgL << endl;
+		cout << "Average swap times for Hoare  Partition=" << counterAvgH << endl;
+		cout << "Average swap times for Lomuto Partition=" << counterAvgL << endl;
 		cout << endl;
 	}
 
@@ -139,7 +135,7 @@ int main() {
 	cout << "counterL=" << counterL << endl;
 	cout << endl;
 
-	//Test
+	//Test for comparing
 	compare();
 
 
