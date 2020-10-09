@@ -57,5 +57,8 @@
     <ClCompile Include="Compare_Hoare_Lomuto_Partition.cpp">
       <Filter>Source Files\Sort</Filter>
     </ClCompile>
+    <ClCompile Include="countNumber.cpp">
+      <Filter>Source Files\Sort</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
