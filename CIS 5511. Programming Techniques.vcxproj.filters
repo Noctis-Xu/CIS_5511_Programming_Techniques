@@ -19,6 +19,9 @@
     <Filter Include="Source Files\Sort">
       <UniqueIdentifier>{88c309f5-20e7-426e-b744-67eb6f90b2c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DataStructure">
+      <UniqueIdentifier>{2d4061f7-57f5-4ece-bf89-a74ee45b4619}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp">
@@ -59,6 +62,9 @@
     </ClCompile>
     <ClCompile Include="countNumber.cpp">
       <Filter>Source Files\Sort</Filter>
+    </ClCompile>
+    <ClCompile Include="BST_string.cpp">
+      <Filter>Source Files\DataStructure</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
