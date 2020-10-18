@@ -2,10 +2,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h> //rand()
-#include <time.h> //clock()
-#include <Windows.h> //sleep()
 #include <string>
-#include <string.h>
 
 using namespace std;
 
@@ -185,13 +182,13 @@ class BST_string_duplicate :public BST {//allows duplicate keys to be stored in 
 	void inorderTreeWalk(BinNode* x) {
 		if (x != NULL) {
 			inorderTreeWalk(x->left);
-			if (treePredecessor(x) != NULL && treePredecessor(x)->key == x->key) //if it's not the first same key
-				inorderTreeWalk(x->right);
-			else { //it's the first key
+			if (treePredecessor(x) != NULL && treePredecessor(x)->key == x->key) //Check its predecessor to see if it's the first same key. For example,5(1), 5(2), 5(3), where 5(1) is the first same key.
+				inorderTreeWalk(x->right); //it's not the first same key. Cases like 5(2) or 5(3)
+			else { //it's the first key. Case like 5(1)
 				string k = x->key;
 				int counter = 1;
 				BinNode* y = x;
-				while (y->right != NULL) { //if there are duplicate keys
+				while (y->right != NULL) { //Check its successors to see if there are duplicate keys and how many of them. For example, to check if there are 5(2) or 5(3)
 					y = treeMinimum(y->right);
 					if (y->key == k)
 						counter++;
@@ -249,79 +246,52 @@ public:
 };
 
 int main() {
-	//int* p1 = new int[2];
-	//p1[0] = 1;
-	//p1[1] = 2;
-	//cout << p1[1] << endl;
-	//int*p2 = p1;
-	//delete [] p2;
-	////delete[] p1;
-	//cout << p1[1] << endl;
-
-	/*BinNode* p1 = new BinNode;
-	BinNode* p2 = new BinNode;
-	BinNode* p3 = new BinNode;
-	p1->key = "p1";
-	p2->key = "p2";
-	p3->key = "p3";*/
-
-	//BinNode*& p = p1;
-	//cout << p->key << endl;
-	//p = p2;
-	//cout << p->key << endl;
-	//cout << p1->key << endl;
-
-	//p1->right = p2;
-	//cout << p1->right->key << endl;
-	//BinNode* temp = p1;
-	//temp->right = p3;
-	//cout << p1->right->key << endl;
-	/*delete p1;
-	cout << p1->key << endl;*/
-
 	//Sample run
-	/*BST_string_duplicate BST_du;
-	BST_du.Insert("fox");
-	BST_du.Insert("cat");
-	BST_du.Insert("cat");
-	BST_du.Insert("cow");
-	BST_du.Insert("tiger");
-	BST_du.Insert("horse");
-	BST_du.Insert("wolf");
-	BST_du.Insert("cat");
-	BST_du.Print();
-	cout << "cat: " << BST_du.Search("cat") << endl;
+	/*BST_string_duplicate BST_du_sample;
+	BST_string_noDuplicate BST_noDu_sample;
+	BST* p_BST_sample = &BST_noDu_sample;
+	p_BST_sample->Insert("fox");
+	p_BST_sample->Insert("cat");
+	p_BST_sample->Insert("cat");
+	p_BST_sample->Insert("cow");
+	p_BST_sample->Insert("tiger");
+	p_BST_sample->Insert("horse");
+	p_BST_sample->Insert("wolf");
+	p_BST_sample->Insert("cat");
+	p_BST_sample->Print();
+	cout << "cat: " << p_BST_sample->Search("cat") << endl;
 	cout << endl;
-	cout << BST_du.Delete("cat") << endl;
-	cout << BST_du.Delete("dog") << endl;
-	BST_du.Print();
-	cout << "cat: " << BST_du.Search("cat") << endl;
-	cout << "dog: " << BST_du.Search("dog") << endl;
-	BST_du.treeWalk();
-
+	cout << p_BST_sample->Delete("cat") << endl;
+	cout << p_BST_sample->Delete("dog") << endl;
+	p_BST_sample->Print();
+	cout << "cat: " << p_BST_sample->Search("cat") << endl;
+	cout << "dog: " << p_BST_sample->Search("dog") << endl;
+	p_BST_sample->treeWalk();
 	cout << endl << endl;
-	BST_string_noDuplicate BST_noDu;
-	BST_noDu.Insert("fox");
-	BST_noDu.Insert("cat");
-	BST_noDu.Insert("cat");
-	BST_noDu.Insert("cow");
-	BST_noDu.Insert("tiger");
-	BST_noDu.Insert("horse");
-	BST_noDu.Insert("wolf");
-	BST_noDu.Insert("cat");
-	BST_noDu.Print();
-	cout << "cat: " << BST_noDu.Search("cat") << endl;
+
+	p_BST_sample = &BST_du_sample;
+	p_BST_sample->Insert("fox");
+	p_BST_sample->Insert("cat");
+	p_BST_sample->Insert("cat");
+	p_BST_sample->Insert("cow");
+	p_BST_sample->Insert("tiger");
+	p_BST_sample->Insert("horse");
+	p_BST_sample->Insert("wolf");
+	p_BST_sample->Insert("cat");
+	p_BST_sample->Print();
+	cout << "cat: " << p_BST_sample->Search("cat") << endl;
 	cout << endl;
-	cout << BST_noDu.Delete("cat") << endl;
-	cout << BST_noDu.Delete("dog") << endl;
-	BST_noDu.Print();
-	cout << "cat: " << BST_noDu.Search("cat") << endl;
-	cout << "dog: " << BST_noDu.Search("dog") << endl;
-	BST_noDu.treeWalk();*/
+	cout << p_BST_sample->Delete("cat") << endl;
+	cout << p_BST_sample->Delete("dog") << endl;
+	p_BST_sample->Print();
+	cout << "cat: " << p_BST_sample->Search("cat") << endl;
+	cout << "dog: " << p_BST_sample->Search("dog") << endl;
+	p_BST_sample->treeWalk();
+	cout << endl << endl;*/
 
 
 
-
+	//User interface
 	cout << "1 search word, which returns an integer to indicate the number of occurrences of the word in the tree." << endl;
 	cout << "2 insert word, which adds one occurrence and returns nothing." << endl;
 	cout << "3 delete word, which removes one occurrence and returns 1 for success, 0 for failure (i.e., the word is not in the tree)." << endl;
