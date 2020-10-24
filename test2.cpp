@@ -7,8 +7,35 @@
 
 using namespace std;
 
+class BinNode {
+public:
+	BinNode* parent = NULL, * left = NULL, * right = NULL;
+	string key;
+	int counter = 1; //count the occurrence of each key
+};
+
+
+
 int main() {
-	int b = 2;
-	unsigned int a = 1 << b;
-	//printf("%bs")
+	//BinNode* p = new BinNode;
+	//cout << p<<endl;
+	//cout << p->counter << endl;
+	//BinNode*& p2 = p;
+	//delete p2;
+	//cout << p->counter << endl;
+	//cout << p << endl;
+	//cout << p2 << endl;
+	//
+	//cout << p << endl;
+
+	//int* p1 = new int[2];
+	//int* p2 = p1;
+	//delete[] p2; //释放了int[2]，但是没有释放p1
+	//cout << p1 << endl;
+
+	int* p1 = new int[2];
+	int*& p2 = p1;
+	delete[] p2; //释放了int[2]，且释放了p1
+	cout << p1 << endl;
+
 }

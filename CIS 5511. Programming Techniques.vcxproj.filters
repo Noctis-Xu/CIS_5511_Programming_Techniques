@@ -66,5 +66,8 @@
     <ClCompile Include="BST_string.cpp">
       <Filter>Source Files\DataStructure</Filter>
     </ClCompile>
+    <ClCompile Include="AVL.cpp">
+      <Filter>Source Files\DataStructure</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
