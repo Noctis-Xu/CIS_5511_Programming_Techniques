@@ -183,9 +183,9 @@ public:
 class AVL :public BST_string_noDuplicate {
 protected:
 	int balanceFactor(BinNode* x) {
-		int leftHeight = 0, rightHeight = 0;
-		if (x->left) leftHeight = x->left->height + 1;
-		if (x->right) rightHeight = x->right->height + 1;
+		int leftHeight = -1, rightHeight = -1;
+		if (x->left) leftHeight = x->left->height;
+		if (x->right) rightHeight = x->right->height;
 		return leftHeight - rightHeight;
 	}
 	void updateHeight(BinNode* x) {
@@ -286,10 +286,10 @@ public:
 				y->left = z;
 			else y->right = z; //insert of the new key is completed
 			/*rebalancing*/
-			for (BinNode* p = z->parent; p; p = p->parent) { //check from the parent of the inserted node. At least it should update height from its parent.
+			for (BinNode* p = z->parent; p; p = p->parent) { //check from the parent of the inserted node. It should update height from its parent to the lowest unbalanced node.
 				if (balanceFactor(p) < -1 || balanceFactor(p) > 1) {
 					rotateAt(p); //including updateHeight()
-					break; //Once the lowest unbalanced subtree is fixed, the above ancestor will also return to its original height. The lowest unbalanced subtree may be the grandparent of the inserted node at least.
+					return; //Once the lowest unbalanced node is fixed, the above ancestor will also be fixed and return to its original height. The lowest unbalanced node may be the grandparent of the inserted node at least.
 				}
 				else updateHeight(p);
 			}
