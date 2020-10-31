@@ -22,6 +22,9 @@
     <Filter Include="Source Files\DataStructure">
       <UniqueIdentifier>{2d4061f7-57f5-4ece-bf89-a74ee45b4619}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DynamicProgramming">
+      <UniqueIdentifier>{91746d06-4d6d-40b9-99db-eef6f6cf2cc2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp">
@@ -67,6 +70,15 @@
       <Filter>Source Files\DataStructure</Filter>
     </ClCompile>
     <ClCompile Include="AVL.cpp">
+      <Filter>Source Files\DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="LCS_example.cpp">
+      <Filter>Source Files\DynamicProgramming</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixChainMultiplication_example.cpp">
+      <Filter>Source Files\DynamicProgramming</Filter>
+    </ClCompile>
+    <ClCompile Include="B_tree.cpp">
       <Filter>Source Files\DataStructure</Filter>
     </ClCompile>
   </ItemGroup>
