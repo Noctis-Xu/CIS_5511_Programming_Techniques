@@ -57,7 +57,7 @@ public:
 class BTree {
 protected:
 	BTNode* _root;
-	int _m; //order-m, it at least is 3.
+	int _m; //order-m, m shall be >= 3.
 	void overflowSolve(BTNode* x) {
 		if (x->keys.size() < _m) return;
 		else { //size=_m
@@ -126,7 +126,7 @@ protected:
 			}
 		}
 		//case 3: merge x with its left sibling
-		if (r < 0) {
+		if (0 < r) {
 			BTNode* left = p->children[r - 1];
 			left->keys.insert(left->keys.size(), p->keys.remove(r - 1));
 			p->children.remove(r);
@@ -232,32 +232,35 @@ public:
 	void print() {
 		treePrint(_root);
 	}
+	void print_order() {
+		cout << "order-m: " << _m << endl;
+	}
 };
 
-
-int main() {
-	/*BTNode q(5);
-	int r = 5;
-	r = q.keys.search(0);
-	cout << q.children[0] << endl;
-	if (0 == NULL)cout << 123 << endl;*/
-	//if (-1 < i) { cout << 1 << endl; }
-
-	BTree myBTree(6);
-	myBTree.print();
-	/*myBTree.insert(1);
-	myBTree.insert(2);*/
-	for (int i = 0; i <= 50; i++) {
+void test(BTree& myBTree) {
+	myBTree.print_order();
+	cout << "insertion test" << endl;
+	for (int i = 0; i <= 30; i++) {
 		myBTree.insert(i);
 		myBTree.print();
-		cout << "********************************" << endl;
+		cout << "---------------------------------" << endl;
 	}
-	cout << "-----------------------------------" << endl;
-	for (int i = 0; i <= 50; i++) {
+	cout << "*********************************" << endl;
+	cout << "*********************************" << endl;
+	cout << "deletion test" << endl;
+	for (int i = 30; i >= 0; i--) {
 		myBTree.remove(i);
 		myBTree.print();
-		cout << "********************************" << endl;
+		cout << "---------------------------------" << endl;
 	}
+}
+
+int main() {
+	BTree myBTree_3(3); //m >= 3
+	BTree myBTree_5(5); //m >= 3
+	test(myBTree_3);
+	cout << endl;
+	test(myBTree_5);
 
 	return 0;
 }
