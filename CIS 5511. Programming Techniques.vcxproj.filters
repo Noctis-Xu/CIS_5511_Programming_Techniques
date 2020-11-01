@@ -78,7 +78,7 @@
     <ClCompile Include="MatrixChainMultiplication_example.cpp">
       <Filter>Source Files\DynamicProgramming</Filter>
     </ClCompile>
-    <ClCompile Include="B_tree.cpp">
+    <ClCompile Include="BTree.cpp">
       <Filter>Source Files\DataStructure</Filter>
     </ClCompile>
   </ItemGroup>

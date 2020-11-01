@@ -90,21 +90,74 @@ protected:
 		}
 	}
 	void underflowSolve(BTNode* x) {
+		//note that x->keys[] may be empty, e.g. 2-3 B-tree or the root
 		if ((_m - 1) / 2 <= x->keys.size()) return;
 		BTNode* p = x->parent;
 		if (!p) { //if x is the root
-			
+			if (!x->keys.size() && x->children[0]) { //the root x is empty
+				_root = x->children[0];
+				_root->parent = NULL;
+				delete x;
+			}
+			return;
 		}
-		//note that x->keys[] may be empty, e.g. 2-3 B-tree
 		int r = 0;
 		while (p->children[r] != x) r++; //locate the node x in p
-		if (0 < r) { //x has a left sibling, so borrow from its left
-
+		//case 1: if x has a left sibling, then borrow from it
+		if (0 < r) {
+			BTNode* left = p->children[r - 1];
+			if ((_m - 1) / 2 < left->keys.size()) { //if the left sibling is big to borrow
+				x->keys.insert(0, p->keys[r - 1]); //x's parent p acts as intermediary
+				p->keys[r - 1] = left->keys.remove(left->keys.size() - 1);
+				x->children.insert(0, left->children.remove(left->children.size() - 1)); //fix their children. The left sibling's right most child transfers to x's left most child.
+				if (x->children[0]) x->children[0]->parent = x; //x->children[0] may be an external node NULL
+				return;
+			}
+		} //x's left sibling is small or nonexistent, so turn to case 2
+		//case 2: if x has a right sibling, then borrow from it. Case 2 is similar to case 1
+		if (r < p->children.size() - 1) {
+			BTNode* right = p->children[r + 1];
+			if ((_m - 1) / 2 < right->keys.size()) {
+				x->keys.insert(x->keys.size(), p->keys[r]);
+				p->keys[r] = right->keys.remove(0);
+				x->children.insert(x->children.size(), right->children.remove(0));
+				if (x->children[x->children.size() - 1])x->children[x->children.size() - 1]->parent = x;
+				return;
+			}
 		}
-		 //borrow from its right
-
-		
-
+		//case 3: merge x with its left sibling
+		if (r < 0) {
+			BTNode* left = p->children[r - 1];
+			left->keys.insert(left->keys.size(), p->keys.remove(r - 1));
+			p->children.remove(r);
+			left->children.insert(left->children.size(), x->children[0]); //note that x->keys[] may be empty
+			if (left->children[left->children.size() - 1]) //its child may be an external node NULL
+				left->children[left->children.size() - 1]->parent = left;
+			for (int i = 0; i < x->keys.size(); i++) { //note that x->keys[] may be empty
+				left->keys.insert(left->keys.size(), x->keys[i]); //for efficiency, copy and paste x->keys rather than remove, since x will be deleted at last anyway.
+				left->children.insert(left->children.size(), x->children[i + 1]);
+				if (left->children[left->children.size() - 1])
+					left->children[left->children.size() - 1]->parent = left;
+			}
+			delete x;
+		}//x's left sibling is nonexistent, so turn to case 4
+		//case 4: merge x with its right sibling. Case 4 is similar to case 3
+		else {
+			BTNode* right = p->children[r + 1];
+			right->keys.insert(0, p->keys.remove(r));
+			p->children.remove(r);
+			right->children.insert(0, x->children[x->children.size() - 1]);
+			if (right->children[0])
+				right->children[0]->parent = right;
+			for (int i = x->keys.size() - 1; i >= 0; i--) {
+				right->keys.insert(0, x->keys[i]);
+				right->children.insert(0, x->children[i]);
+				if (right->children[0])
+					right->children[0]->parent = right;
+			}
+			delete x;
+		}
+		underflowSolve(p);
 	}
 	void treePrint(BTNode* x, int height = 0) { //reverse inorder tree walk
 		if (x->keys.size() != 0) {
@@ -195,21 +248,16 @@ int main() {
 	/*myBTree.insert(1);
 	myBTree.insert(2);*/
 	for (int i = 0; i <= 50; i++) {
-		if (i == 16) {
-			int t = 0;
-			cout << t << endl;
-		}
 		myBTree.insert(i);
 		myBTree.print();
 		cout << "********************************" << endl;
 	}
-
-	/*Vector<int> test(4);
-	test.insert(0,0);
-	test.insert(1,1);
-	cout << test.size() << endl;
-	test.remove(0);
-	cout << test.size() << endl;*/
+	cout << "-----------------------------------" << endl;
+	for (int i = 0; i <= 50; i++) {
+		myBTree.remove(i);
+		myBTree.print();
+		cout << "********************************" << endl;
+	}
 
 	return 0;
 }

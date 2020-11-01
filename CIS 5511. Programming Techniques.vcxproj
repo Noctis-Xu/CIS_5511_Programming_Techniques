@@ -154,7 +154,7 @@
     <ClCompile Include="BST_string.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="B_tree.cpp">
+    <ClCompile Include="BTree.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Compare_Hoare_Lomuto_Partition.cpp">
