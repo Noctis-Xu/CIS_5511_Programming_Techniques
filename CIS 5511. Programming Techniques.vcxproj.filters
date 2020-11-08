@@ -25,6 +25,9 @@
     <Filter Include="Source Files\DynamicProgramming">
       <UniqueIdentifier>{91746d06-4d6d-40b9-99db-eef6f6cf2cc2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GreedyAlgorithms">
+      <UniqueIdentifier>{a6f7883f-d4cb-4c69-850e-efc1bcc77511}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp">
@@ -80,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="BTree.cpp">
       <Filter>Source Files\DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="LCString.cpp">
+      <Filter>Source Files\DynamicProgramming</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

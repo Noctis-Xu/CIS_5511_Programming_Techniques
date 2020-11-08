@@ -51,8 +51,8 @@ void print_lcs(vector< vector<char>>& b, string x, int i, int j)
 
 int main()
 {
-    string x = "10010101";
-    string y = "010110110";
+    string x = "ABCBDAB";
+    string y = "BDCABA";
     vector< vector<int>> c;
     vector< vector<char>> b;
 
