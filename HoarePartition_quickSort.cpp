@@ -53,6 +53,14 @@ int hoarePartition(int* A, int p, int r) {
 	}
 }
 
+void quickSort(int* A, int p, int r) {
+	if (p < r) {
+		int q = hoarePartition(A, p, r);
+		quickSort(A, p, q);
+		quickSort(A, q + 1, r);
+	}
+}
+
 int main() {
 	//int A[] = { 13, 19, 9, 5, 12, 8, 7, 4, 11, 2, 6, 21 }; //A_length=12
 	int A[] = { 8, 3, 7, 1, 4, 2, 9, 6, 0, 5 }; //A_length=12
