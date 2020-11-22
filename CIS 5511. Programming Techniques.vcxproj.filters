@@ -28,6 +28,9 @@
     <Filter Include="Source Files\GreedyAlgorithms">
       <UniqueIdentifier>{a6f7883f-d4cb-4c69-850e-efc1bcc77511}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Graph">
+      <UniqueIdentifier>{34746f45-5903-4ac7-8134-c390ddcbaee3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp">
@@ -89,6 +92,18 @@
     </ClCompile>
     <ClCompile Include="RearrangeTasks.cpp">
       <Filter>Source Files\GreedyAlgorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="DFS.cpp">
+      <Filter>Source Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="DFS_AdjList_v1.cpp">
+      <Filter>Source Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="DFS_AdjList_v2.cpp">
+      <Filter>Source Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="DFS_AdjList_v3.cpp">
+      <Filter>Source Files\Graph</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

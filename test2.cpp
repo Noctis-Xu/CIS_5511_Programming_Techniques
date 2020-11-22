@@ -69,10 +69,16 @@ int main() {
 	//delete[] p2; //释放了int[2]，但是没有释放p1
 	//cout << p1 << endl;
 
-	Vector<int> a(5);
+	/*Vector<int> a(5);
 	a.insert(0, 0);
 	cout << a[0] << endl;
 	a[0] = 4;
 	cout << a[0]<<endl;
-	cout << a.size();
+	cout << a.size();*/
+
+	int a = 5, b = 6;
+	int* p1=&a;
+	int** p2 = &p1;
+	*p2 = &b;
+	cout << *p1  << endl;
 }
