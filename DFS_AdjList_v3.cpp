@@ -40,23 +40,22 @@ struct VertexNode { //Vertex u
 //template <class Tv, class Te>
 class Graph_AdjList {
 private:
-	void DFS_visit(VertexNode& u, int& time, int root) { //for the connected domain
+	void DFS_visit(VertexNode& u, int& time, int source) { //for the connected domain
 		time++;
 		u.dTime = time;
 		u.color = GRAY;
 		//cout << u.verIndex << ' ';
-		cout << "(" << u.verIndex << "," << root << ")" << endl;
+		cout << "(" << u.verIndex << "," << source << ")" << endl;
 		counterV_dfs++;
 		for (EdgeNode* v = u.first; v; v = v->next) {
 			counterE_dfs++;
 			if (V[v->verIndex].color == WHITE) {
-				DFS_visit(V[v->verIndex], time, root);
+				DFS_visit(V[v->verIndex], time, source);
 			}
 		}
 		u.color = BLACK;
 		time++;
 		u.fTime = time;
-
 	}
 public:
 	int vNumber;
@@ -64,7 +63,7 @@ public:
 
 	/*Algorithms*/
 	void dfs() { //for the entire graph, including unconnected region. The algorithm is similar to that in P604 of the textbook
-		/*for (int i = 1; i <= vNumber; i++) { //The vertices has already been WHITE
+		/*for (int i = 1; i <= vNumber; i++) { //The vertices has already been WHITE. They are created to be WHITE.
 			V[i].color = WHITE;
 			counterV_dfs++;
 		}*/
@@ -78,7 +77,7 @@ public:
 		}
 	}
 	Graph_AdjList tranpose() { //construct the transpose of G. Traverse the adjacency list, so the time is O(V+E). 
-		//GT: G's transpose, V[i]£ºu in G, v: u's adjacent vertices in G, uT: u in GT, vT: u's adjacent vertices in GT
+		//GT: G's transpose, V[i]: u in G, v: u's adjacent vertices in G, uT: u in GT, vT: u's adjacent vertices in GT
 		Graph_AdjList GT;
 		GT.vNumber = vNumber;
 		vector< EdgeNode* > vT_last(vNumber + 1); //point to the last element of Adj[uT]
@@ -146,6 +145,8 @@ public:
 };
 
 int main() {
+	//case 1
+	cout << "Case 1" << endl;
 	vector< vector<int> > adjList = {
 		{1,2,4}, //vertex 1 and its adjacent vertices. Here the edges are (1,2) and (1,4).
 		{2,5},
@@ -154,18 +155,48 @@ int main() {
 		{5,4},
 		{6,6}
 	};
-
 	counterV_dfs = 0;
 	counterE_dfs = 0;
 	counterV_trans = 0;
 	counterE_trans = 0;
 	Graph_AdjList G(adjList);
+	cout << "Adj List:" <<endl;
+	G.printGraph();
+	cout << "Solution:" << endl;
 	Graph_AdjList GT = G.tranpose();
 	GT.dfs();
 	cout << "vertex-access in dfs procedure: " << counterV_dfs << endl;
 	cout << "edge-access in dfs procedure: " << counterE_dfs << endl;
 	cout << "vertex-access in transpose procedure: " << counterV_trans << endl;
 	cout << "edge-access in transpose procedure: " << counterE_trans << endl;
+	cout << endl;
+
+	//case 2
+	cout << "Case 2" << endl;
+	vector< vector<int> > adjList2 = {
+		{1,5,3}, //vertex 1 and its adjacent vertices. Here the edges are (1,2) and (1,4).
+		{2,1},
+		{3,5},
+		{4,2,5},
+		{5,8},
+		{6,6,2},
+		{7,1,2,5},
+		{8,8}
+	};
+	counterV_dfs = 0;
+	counterE_dfs = 0;
+	counterV_trans = 0;
+	counterE_trans = 0;
+	Graph_AdjList G2(adjList2);
+	cout << "Adj List:" << endl;
+	G2.printGraph();
+	cout << "Solution:" << endl;
+	G2.tranpose().dfs();
+	cout << "vertex-access in dfs procedure: " << counterV_dfs << endl;
+	cout << "edge-access in dfs procedure: " << counterE_dfs << endl;
+	cout << "vertex-access in transpose procedure: " << counterV_trans << endl;
+	cout << "edge-access in transpose procedure: " << counterE_trans << endl;
+
 
 	return 0;
 }
