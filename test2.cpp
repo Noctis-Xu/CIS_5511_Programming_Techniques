@@ -51,7 +51,6 @@ public:
 	}
 };
 
-
 int main() {
 	//BinNode* p = new BinNode;
 	//cout << p<<endl;
@@ -77,8 +76,8 @@ int main() {
 	cout << a.size();*/
 
 	int a = 5, b = 6;
-	int* p1=&a;
+	int* p1 = &a;
 	int** p2 = &p1;
 	*p2 = &b;
-	cout << *p1  << endl;
+	cout << *p1 << endl;
 }

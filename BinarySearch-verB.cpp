@@ -1,3 +1,5 @@
+//重复时返回秩最大的那个。如果查找失败则返回-1。
+
 //#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <stdio.h>

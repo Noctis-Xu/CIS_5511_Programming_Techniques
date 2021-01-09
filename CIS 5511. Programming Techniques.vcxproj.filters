@@ -45,9 +45,6 @@
     <ClCompile Include="BinarySearch-verA_AverageCostTest.cpp">
       <Filter>Source Files\Search</Filter>
     </ClCompile>
-    <ClCompile Include="BinarySearch.cpp">
-      <Filter>Source Files\Search</Filter>
-    </ClCompile>
     <ClCompile Include="countingSort.cpp">
       <Filter>Source Files\Sort</Filter>
     </ClCompile>
@@ -104,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="DFS_AdjList_v3.cpp">
       <Filter>Source Files\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="palindromeCheck.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

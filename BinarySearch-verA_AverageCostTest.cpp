@@ -1,3 +1,4 @@
+//命中即返回，对重复元素的秩是否最大不作要求。失败返回-1。
 //#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <iomanip>
@@ -13,7 +14,7 @@ int counter = 0; //count the while loop execution times in binary search
 int randomSeed = time(0);
 
 
-int nonRecursiveBinarySearch(int* A, const int key) {
+int nonRecursiveBinarySearch(int* A, const int key) { //index starts from 0. A[0..n-1]
 	int low = 0;
 	int high = len - 1;
 	int middle;
@@ -29,6 +30,7 @@ int nonRecursiveBinarySearch(int* A, const int key) {
 	}
 	return -1;
 }
+
 
 void randomArray(int* A, const int len, const int left, const int right) {
 	//the integer number is generated in [left,right], both inclusive
